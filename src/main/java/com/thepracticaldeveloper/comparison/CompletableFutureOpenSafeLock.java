@@ -8,22 +8,22 @@ import org.slf4j.LoggerFactory;
 
 import java.util.concurrent.CompletableFuture;
 
-public class CompletableFutureOpenLocker {
+public class CompletableFutureOpenSafeLock {
 
-  private static final Logger log = LoggerFactory.getLogger(CompletableFutureOpenLocker.class);
+  private static final Logger log = LoggerFactory.getLogger(CompletableFutureOpenSafeLock.class);
 
-  public Loot openLocker(final Thief thief, final String victim) {
+  public Loot openSafeLock(final Thief thief, final String victim) {
     return CompletableFuture.supplyAsync(Actions::unlockTheDoor)
       .thenApply(isOpened ->
-        CompletableFuture.supplyAsync(() -> Actions.figureOutLockerNumber(victim))
+        CompletableFuture.supplyAsync(() -> Actions.figureOutSafetyBoxNumber(victim))
           .thenCombineAsync(
             CompletableFuture.supplyAsync(() -> Actions.hackSecretPin(victim)),
-            Actions::openLock
+            Actions::openSafeLock
           )
       ).join()
       .thenApply(
         loot -> {
-          log.info("{} gets the content of the lock: '{}'", thief.getName(), thief.handleLoot(loot));
+          log.info("{} gets the content of the safety box: '{}'", thief.getName(), thief.handleLoot(loot));
           return loot;
         }
       ).join();

@@ -29,18 +29,18 @@ public class Actions {
     return pin;
   }
 
-  public static String figureOutLockerNumber(final String personName) {
-    log.info("Figuring out the locker number of {}", personName);
+  public static String figureOutSafetyBoxNumber(final String personName) {
+    log.info("Figuring out the safety box number of {}", personName);
     delay();
     final String lock = "A" + ThreadLocalRandom.current().nextInt(100);
-    log.info("Got the locker number: {}", lock);
+    log.info("Got the safety box number: {}", lock);
     return lock;
   }
 
-  public static Loot openLock(final String lockerNumber, final int pin) {
-    log.info("Opening the locker {} using the pin {}", lockerNumber, pin);
+  public static Loot openSafeLock(final String safetyBoxNumber, final int pin) {
+    log.info("Opening the safe lock {} using the pin {}", safetyBoxNumber, pin);
     delay();
-    log.info("Locker opened!");
+    log.info("Safety Box opened!");
     return Loot.randomLoot();
   }
 
