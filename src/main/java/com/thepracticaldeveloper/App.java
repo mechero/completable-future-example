@@ -18,7 +18,7 @@ public class App {
   public static void main(String[] args) throws Exception {
 
     log.info("\n\n SINGLE THREAD ====");
-    final Loot singleThreadLoot = new SingleThreadOpenLocker().openLocker(Thief.LORA, "Mr. Toomuchmoney");
+    final Loot singleThreadLoot = new SingleThreadOpenLocker().openLockerFunctional(Thief.LORA, "Mr. Toomuchmoney");
     log.info("App got the loot {}", singleThreadLoot);
 
     log.info("\n\n PLAIN FUTURES ====");
