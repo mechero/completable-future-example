@@ -19,7 +19,11 @@ public class CompletableFutureOpenSafeLock {
           .thenCombineAsync(
             CompletableFuture.supplyAsync(() -> Actions.hackSecretPin(victim)),
             Actions::openSafeLock
-          )
+          ).exceptionally(e -> {
+            log.error("Something went wrong: {} Run, run, run!!", e.getMessage());
+            return Loot.BAD;
+          }
+        )
       ).join()
       .thenApply(
         loot -> {
