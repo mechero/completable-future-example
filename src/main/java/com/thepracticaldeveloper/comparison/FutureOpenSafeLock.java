@@ -14,9 +14,10 @@ public class FutureOpenSafeLock {
   private static final Logger log = LoggerFactory.getLogger(FutureOpenSafeLock.class);
 
   public Loot openSafeLock(final Thief thief, final String victim) throws Exception {
-
     final ExecutorService executorService = Executors.newFixedThreadPool(4);
-    final Future<Boolean> doorUnlockFuture = executorService.submit(Actions::unlockTheDoor);
+    final Future<Boolean> doorUnlockFuture = executorService.submit(
+      Actions::unlockTheDoor
+    );
     doorUnlockFuture.get();
 
     final Future<String> safetyBoxNumberFuture = executorService.submit(
